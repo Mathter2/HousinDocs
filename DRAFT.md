@@ -2,15 +2,15 @@
 
 ## Table of contents
 
-.[1.Introduction](#introduction)
-.[2.Objective](#objective)
-.[3.Search engine](#search_engine)
-..[3.1.Payment type](#payment_type)
-..[3.2.Location](#location)
-..[3.3.Property type](#property_type)
-..[3.4.Room types](#room_types)
-.[4.Floor plans](#floor_plans)
-..[4.1.Room types](#room_types)
+* [1.Introduction](#1introduction)
+* [2.Objective](#2objective)
+* [3.Search engine](#3search-engine)
+ * [3.1.Payment type](#31payment-type)
+ * [3.2.Location](#32location)
+ * [3.3.Property type](#33property-type)
+ * [3.4.Room types](#34room-types)
+* [4.Floor plans](#4floor-plans)
+ * [4.1.Room types](#41room-types)
 
 ## 1.Introduction
 
@@ -20,7 +20,7 @@ It is intended as a guide on how to build it, and what needs to be built for thi
 
 ## 2.Objective
 
-Project Housin is designed for people who wishes to buy, rent or sell real estate properties. It aims to have a powerful search engine, both for specific and accurate data. People who wishes to sell or rent a property needs to specify its type, like a house or apartment, and provide its floor plan. By creating an accurate floor plan and defining room types, such as bathroom, kitchen or dorms it is possible to then find homes with certain parameters, such as number of dorms, size of the kitchen, etc.
+Project Housin is designed for people who wishes to buy, rent or sell real estate properties. It aims to have a powerful search engine, both for specific and accurate data. People who wishes to sell or rent a property needs to specify its type, like a house or apartment, and provide its floor plan. By creating an accurate floor plan and defining room types, such as bathroom, kitchen or dorms it is possible to then find homes with certain parameters, such as number of bedrooms, size of the kitchen, etc.
 
 ## 3.Search engine
 
@@ -51,9 +51,67 @@ The definition of a real state property is pretty wide. It could refer to a whol
 
 ### 3.4.Room types
 
-Search queries will be defined by the number, size and type of rooms or zones within a property. These types will play an important role for defining the features of a home. Room types needs to fit the users request as accurately as possible. This means different payment types should include different types of rooms for better search results. For example, a house can have a living room, 2 dorms, 1 bathroom, 1 kitchen and a study. When renting this house for summer vacation, it is important to separate the dorms from the study, as dorms will have beds, while the study will not. However, when selling the house without furniture, it doesn't matter what the rooms were used for, as if the study is large enough (we do have the size of the room) it can become a dorm (or another type) for the new owners.
-To fix the above dilemma, rooms will have groups and sub-groups. 
+Search queries will be defined by the number, size and type of rooms or zones within a property. These types will play an important role for defining the features of a home. Room types needs to fit the users request as accurately as possible. This means different payment types should include different types of rooms for better search results. For example, a house can have a living room, 2 bedrooms, 1 bathroom, 1 kitchen and a study. When renting this house for summer vacation, it is important to separate the bedrooms from the study, as bedrooms will have beds, while the study will not. However, when selling the house without furniture, it doesn't matter what the rooms were used for, as if the study is large enough (we do have the size of the room) it can become a bedroom (or another type) for the new owners.
+To fix the above dilemma, rooms will have groups and sub-groups. Bedrooms, playrooms, studies ,etc will go under the room group, while living rooms, halls, dinner rooms, etc will go under the common space group. Bathrooms and kitchens may need better definitions, as most bathrooms are defined by having at least a toilet and a sink, a room with a bidet and a shower may be declared as a bathroom as well. For this, a user who wants to find a home with two bathrooms (each with a toilet and a shower) should look instead for two toilets and two showers; looking for 2 bathrooms is optional, but 2 toilets in a single room should be too uncommon). Bathrooms should be under hygiene rooms, along with en suite bathrooms, Jack and Jill bathrooms, wetrooms and laundry rooms. Kitchens are defined by having cookware and sometimes a skink. It has to be enforced on floor plan creators to add the sink if it has one, but this will not appear on the search engine (it can be found using sinks = number of bathrooms + 1, but this might be inaccurate). Kitchens will fall into cooking rooms categories, along side barbecues.
+Exterior Areas defines things outside the house, such as playgrounds, yards and gardens.
+Garages and parking lots comes into the Vehicle Access group. This group must garantee that the area defined has connectivity to an outside route or street.
+A special group exists for shared spaces with other neighbors. These include common halls, playgrounds and gyms.
+Stairs goes into the Accessibility group, along with steps, ramps, elevators and roads. Note that the shared group have its own set of accesibility zones called Shared Accessibility. Accessibility areas do not count thowards the total living area, however, unlike their shared counterparts, they are considered part of the property.
 
+Here is a summary of room types to include in the application:
+* Private Rooms
+ * Bedroom
+ * Study
+ * Library
+ * Playroom
+ * Storage Room
+ * Gym
+* Common Space
+ * Hall
+ * Living Room
+ * Diner Room
+ * Relax Room
+* Hygiene Rooms
+ * Bathroom
+ * Bathroom (en suite)
+ * Bathroom (Jack and Jill)
+ * Wetroom
+ * Shower Room
+ * Laundry Room
+ * Interior Pool Area
+* Cooking Space
+ * Kitchen
+ * Kitchenette
+ * Interior Barbacue
+* Exterior Area
+ * Backyard
+ * Yard
+ * Garden
+ * Playground
+ * Pool Area
+ * Barbacue
+* Vehicle Access
+ * Garage
+ * Parking Lot
+ * Parking Roof
+* Accessibility
+ * Steps
+ * Stairs
+ * Ladder
+ * Elevator
+ * Ramp
+* Shared Space
+ * Shared Hall
+ * Shared Playground
+ * Shared Pool Area
+ * Shared Gym
+* Shared Accessibility
+ * Shared Steps
+ * Shared Stairs
+ * Shared Ladder
+ * Shared Elevator
+ * Shared Ramp
+ 
 ## 4.Floor plans
 
 The main tool for finding accurate data of a real state property is thru its floor plan or blueprint. Although some of the data within a floor plan is not needed for accurate search, such as wall thickness or precise room position, it's important to add label to rooms, as most searches are regarding room proposes.
